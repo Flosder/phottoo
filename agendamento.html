@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Sessão - PHOTTOO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; /* Azul claro */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #2d2e2e; /* Azul */
+            color: white;
+            width: 100%;
+            height: 150px;
+            box-sizing: border-box;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .logo {
+            width: 300px;
+            height: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-buttons a {
+            color: white;
+            background-color: #1565c0; /* Azul mais escuro */
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .agendamento-container {
+            background-color: white;
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1565c0; /* Azul */
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #1565c0; /* Azul */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="tel"],
+        textarea,
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .event-section {
+            margin-top: 20px;
+        }
+
+        .event-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-group input[type="text"] {
+            margin-top: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #1e88e5; /* Azul */
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1565c0; /* Azul mais escuro */
+        }
+
+        footer {
+            background-color: #1e88e5; /* Azul */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="nav-buttons">
+                <a href="#carrinho">Meu Carrinho</a>
+                <a href="index.html">Início</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="agendamento-container">
+        <h2>Agendamento de Sessão Fotográfica</h2>
+        <form>
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" required>
+
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <input type="date" id="data_nascimento" name="data_nascimento" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telefone">Telefone de Contato:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+
+            <div class="event-section">
+                <label for="data_evento">Data do Evento:</label>
+                <input type="date" id="data_evento" name="data_evento" required style="margin-bottom: 20px;">
+             
+                <label>Natureza do Evento:</label>           
+                <br><div class="checkbox-group">
+                    <label><input type="checkbox" name="natureza_evento" value="Esporte"> Esporte</label>
+                    <input type="text" id="esporte_nome" name="esporte_nome" placeholder="Nome do esporte, exemplo: futsal, vôlei...">
+
+                    <label><input type="checkbox" name="natureza_evento" value="Casamento"> Casamento</label>
+                    <label><input type="checkbox" name="natureza_evento" value="Aniversário"> Aniversário</label>
+                    <label><input type="checkbox" name="natureza_evento" value="Gestante"> Gestante</label>
+                    <label><input type="checkbox" name="natureza_evento" value="Newborn"> Newborn</label>
+                    <label><input type="checkbox" name="natureza_evento" value="Outro"> Outro</label>
+                    <input type="text" id="Outro" name="outro" placeholder="Em caso de outro, especifique o evento...">
+
+                    <br><label> Entraremos em contato para maiores informações! </label>
+                </div>
+            </div>
+
+            <button type="submit">Agendar Sessão</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 PHOTTOO. Todos os direitos reservados.</p>
+        <p>Endereço: Rua Amable Peres Rodrigues, 308, Barão de Cocais, Minas Gerais, CEP 35970-000</p>
+        <p>Email: contato@phottoo.com.br | Telefone: (00) 1234-5678</p>
+    </footer>
+</body>
+</html>

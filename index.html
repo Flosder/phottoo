@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHOTTOO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 150px;
+            max-width: 1200px;
+        }
+
+        .logo {
+            width: 300px;
+            height: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-buttons a {
+            color: white;
+            background-color: #555;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px 0;
+        }
+
+        .text-section {
+            width: 40%;
+            padding: 20px;
+        }
+
+        .carousel {
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+        }
+
+        .carousel img {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .carousel img.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .photographer-selector {
+            width: 200px;
+            margin: 20px 0;
+            text-align: left;
+            position: absolute;
+            left: 20px;
+            top: 200px;
+        }
+
+        .photographer-selector h2 {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .photographer-selector select {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        .highlight-section {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .highlight-section h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .highlight-images {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+        }
+
+        .highlight-images a {
+            display: block;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+        .highlight-images img {
+            width: 200%;
+            height: 200%;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .highlight-images .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .category-section {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .category-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .photo-grid a {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 200px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .photo-grid .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 15px;
+            }
+
+            .logo {
+                width: 120px;
+            }
+
+            .nav-buttons {
+                gap: 10px;
+            }
+
+            .nav-buttons a {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+                width: 90%;
+            }
+
+            .text-section {
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .carousel {
+                width: 100%;
+                height: auto;
+            }
+
+            .carousel img {
+                width: 100%;
+                height: auto;
+            }
+
+            .highlight-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .highlight-images {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photographer-selector {
+                position: static;
+                text-align: center;
+                margin: 20px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 5px 10px;
+            }
+
+            .logo {
+                width: 200px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .nav-buttons a {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .highlight-images {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .photographer-selector {
+                width: 100%;
+                margin: 10px auto;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("contextmenu", function(e){
+            e.preventDefault();
+        }, false);
+
+        window.onload = function() {
+            const images = document.querySelectorAll('.carousel img');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.remove('active');
+                    if (index === currentIndex) {
+                        img.classList.add('active');
+                    }
+                });
+            }
+
+            function moveCarousel() {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateCarousel();
+            }
+
+            setInterval(moveCarousel, 4000); // Troca de imagem a cada 4 segundos
+            updateCarousel(); // Estado inicial
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="nav-buttons">
+                <a href="#carrinho">Meu Carrinho</a>
+                <a href="agendamento.html">Agende Sua Sessão</a>
+                <a href="login.php">Login</a> <!-- Redireciona para login.php -->
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="text-section">
+            <h2>Bem-vindo ao PHOTTOO</h2>
+            <p>Aqui você encontrará uma seleção exclusiva de fotografias, com opções para compra e download. Explore nossas imagens e descubra o que temos a oferecer!</p>
+        </div>
+
+        <section class="carousel">
+            <img src="a.jpeg" alt="" class="active">
+            <img src="b.jpeg" alt="">
+            <img src="c.jpeg" alt="">
+            <img src="d.jpeg" alt="">
+            <img src="e.jpeg" alt="">
+            <img src="f.jpeg" alt="">
+            <img src="g.jpeg" alt="">
+            <img src="h.jpeg" alt="">
+            <img src="i.jpeg" alt="">
+            <img src="j.jpeg" alt="">
+        </section>
+    </div>
+
+    <div class="highlight-section">
+        <h2>DESTAQUES</h2>
+        <div class="highlight-images">
+            <a href="5.html">
+                <img src="dest1.jpeg" alt="Destaque 1">
+                <div class="overlay">Destaque 1</div>
+            </a>
+            <a href="6.html">
+                <img src="dest2.jpeg" alt="Destaque 2">
+                <div class="overlay">Destaque 2</div>
+            </a>
+            <a href="7.html">
+                <img src="dest3.jpeg" alt="Destaque 3">
+                <div class="overlay">Destaque 3</div>
+            </a>
+            <a href="8.html">
+                <img src="dest4.jpeg" alt="Destaque 4">
+                <div class="overlay">Destaque 4</div>
+            </a>
+            <a href="9.html">
+                <img src="dest5.jpeg" alt="Destaque 5">
+                <div class="overlay">Destaque 5</div>
+            </a>
+            <a href="10.html">
+                <img src="dest6.jpeg" alt="Destaque 6">
+                <div class="overlay">Destaque 6</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="photographer-selector">
+        <h2>Escolha o Fotógrafo</h2>
+        <select>
+            <option value="arthur.html">Arthur</option>
+            <option value="fotografo2.html">Fotógrafo 2</option>
+            <option value="fotografo3.html">Fotógrafo 3</option>
+            <option value="fotografo4.html">Fotógrafo 4</option>
+            <option value="fotografo5.html">Fotógrafo 5</option>
+        </select>
+    </div>
+
+    <div class="category-section">
+        <h2>Escolha a Categoria</h2>
+        <div class="photo-grid">
+            <a href="1.html">
+                <img src="futsal.jpeg" alt="FUTSAL">
+                <div class="overlay">FUTSAL</div>
+            </a>
+            <a href="2.html">
+                <img src="casamento.jpeg" alt="CASAMENTO">
+                <div class="overlay">CASAMENTO</div>
+            </a>
+            <a href="3.html">
+                <img src="esportes.jpeg" alt="ESPORTES">
+                <div class="overlay">ESPORTES</div>
+            </a>
+            <a href="4.html">
+                <img src="variadas.jpeg" alt="VARIADAS">
+                <div class="overlay">VARIADAS</div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 PHOTTOO. Todos os direitos reservados.</p>
+        <p>Endereço: Rua Amable Peres Rodrigues, 308, Barão de Cocais, Minas Gerais, CEP 35970-000</p>
+        <p>Email: contato@phottoo.com.br | Telefone: (00) 1234-5678</p>
+    </footer>
+</body>
+</html>
